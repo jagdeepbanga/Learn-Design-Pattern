@@ -2,7 +2,9 @@
 
 namespace App\Duck\Behaviors\Contracts;
 
+use App\Duck\Behaviors\Enums\FlyEnum;
+
 interface FlyBehaviorInterface
 {
-    public function fly(): bool;
+    public function fly(): FlyEnum;
 }

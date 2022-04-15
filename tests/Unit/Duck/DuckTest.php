@@ -2,14 +2,17 @@
 
 namespace Tests\Unit\Duck;
 
+use App\Duck\Behaviors\Enums\FlyEnum;
 use App\Duck\Behaviors\Enums\QuackEnum;
 use App\Duck\Behaviors\FlyBehaviorNoWay;
 use App\Duck\Behaviors\FlyBehaviorWithWings;
+use App\Duck\Behaviors\FlyRocketPowered;
 use App\Duck\Behaviors\MuteQuackBehavior;
 use App\Duck\Behaviors\QuackBehavior;
 use App\Duck\Behaviors\SqueakBehavior;
 use App\Duck\DecoyDuck;
 use App\Duck\MallardDuck;
+use App\Duck\MiniDuckSimulator;
 use App\Duck\RedHeadDuck;
 use App\Duck\RubberDuck;
 use Tests\TestCase;
@@ -20,7 +23,7 @@ class DuckTest extends TestCase
      * @test
      * @dataProvider  DataProvider
      */
-    public function duck_cases(
+    public function ducks_with_different_behaviors(
         string $className,
         string $quackBehavior,
         string $flyBehavior,
@@ -43,7 +46,7 @@ class DuckTest extends TestCase
                 FlyBehaviorWithWings::class,
                 [
                     'quack' => QuackEnum::QUACK,
-                    'fly' => true,
+                    'fly' => FlyEnum::FLY,
                     'swim' => true
                 ]
             ],
@@ -53,7 +56,7 @@ class DuckTest extends TestCase
                 FlyBehaviorWithWings::class,
                 [
                     'quack' => QuackEnum::SQUEAK,
-                    'fly' => true,
+                    'fly' => FlyEnum::FLY,
                     'swim' => true
                 ]
             ],
@@ -63,7 +66,7 @@ class DuckTest extends TestCase
                 FlyBehaviorNoWay::class,
                 [
                     'quack' => QuackEnum::QUACK,
-                    'fly' => false,
+                    'fly' => FlyEnum::CAN_NOT_FLY,
                     'swim' => true
                 ]
             ],
@@ -73,10 +76,28 @@ class DuckTest extends TestCase
                 FlyBehaviorNoWay::class,
                 [
                     'quack' => QuackEnum::MuteQuack,
-                    'fly' => false,
+                    'fly' => FlyEnum::CAN_NOT_FLY,
                     'swim' => true
                 ]
             ],
         ];
+    }
+
+    /** @test */
+    public function can_change_fly_behaviour_dynamically(): void
+    {
+        $miniDuck = new MiniDuckSimulator(
+            new QuackBehavior(),
+            new FlyBehaviorWithWings()
+        );
+
+        $this->assertEquals(QuackEnum::QUACK, $miniDuck->performQuack());
+        $this->assertEquals(FlyEnum::FLY, $miniDuck->performFly());
+
+        $miniDuck->setQuackBehavior(new SqueakBehavior());
+        $miniDuck->setFlyBehavior(new FlyRocketPowered());
+
+        $this->assertEquals(QuackEnum::SQUEAK, $miniDuck->performQuack());
+        $this->assertEquals(FlyEnum::FLY_WITH_ROCKET, $miniDuck->performFly());
     }
 }

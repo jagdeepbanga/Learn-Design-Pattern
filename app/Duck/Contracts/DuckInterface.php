@@ -2,6 +2,7 @@
 
 namespace App\Duck\Contracts;
 
+use App\Duck\Behaviors\Enums\FlyEnum;
 use App\Duck\Behaviors\Enums\QuackEnum;
 
 interface DuckInterface
@@ -12,5 +13,5 @@ interface DuckInterface
 
     public function performQuack(): QuackEnum;
 
-    public function performFly(): bool;
+    public function performFly(): FlyEnum;
 }
