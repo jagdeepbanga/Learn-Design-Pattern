@@ -2,7 +2,7 @@
 
 namespace App\Duck\Behaviors\Contracts;
 
-interface FlyInterface
+interface FlyBehaviorInterface
 {
     public function fly(): bool;
 }
