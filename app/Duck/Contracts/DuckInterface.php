@@ -4,11 +4,11 @@ namespace App\Duck\Contracts;
 
 interface DuckInterface
 {
-    public function quack();
+    public function quack(): bool;
 
-    public function swim();
+    public function swim(): bool;
 
-    public function fly();
+    public function fly(): bool;
 
-    public function display();
+    public function display(): string;
 }

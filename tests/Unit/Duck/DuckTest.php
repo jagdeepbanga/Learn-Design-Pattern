@@ -6,6 +6,7 @@ use App\Duck\DecoyDuck;
 use App\Duck\MallardDuck;
 use App\Duck\RedHeadDuck;
 use App\Duck\RubberDuck;
+use JetBrains\PhpStorm\ArrayShape;
 use Tests\TestCase;
 
 class DuckTest extends TestCase
@@ -13,8 +14,10 @@ class DuckTest extends TestCase
     /**
      * @test
      * @dataProvider  DataProvider
+     *
+     * @param  array<string>  $behaviour
      */
-    public function duck_cases($className, $behaviour)
+    public function duck_cases(string $className, array $behaviour): void
     {
         $duck = new $className;
         $this->assertEquals($className, $duck->display());
@@ -23,7 +26,7 @@ class DuckTest extends TestCase
         $this->assertEquals(true, $behaviour['swim']);
     }
 
-    public function DataProvider()
+    public function DataProvider(): array
     {
         return [
             'for MallardDuck' => [

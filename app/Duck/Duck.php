@@ -6,22 +6,22 @@ use App\Duck\Contracts\DuckInterface;
 
 abstract class Duck implements DuckInterface
 {
-    public function display()
+    public function display(): string
     {
         return get_class($this);
     }
 
-    public function quack()
+    public function quack(): bool
     {
         return true;
     }
 
-    public function swim()
+    public function swim(): bool
     {
         return true;
     }
 
-    public function fly()
+    public function fly(): bool
     {
         return true;
     }
