@@ -2,11 +2,11 @@
 
 Learning Design Pattern from book and implementing each chapter exercise in PHP with Test.
 
-## Book: Head First Design Patterns
+### Book: Head First Design Patterns
 
 [Head First Design Patterns: A Brain-Friendly Guide](https://www.oreilly.com/library/view/head-first-design/0596007124/)
 
-# Testing
+### Testing
 
 To run the tests, issue this command:
 
@@ -14,7 +14,7 @@ To run the tests, issue this command:
 vendor/bin/phpunit
 ```
 
-# PHPStan
+### PHPStan
 
 To run static code analyze, issue this command
 
