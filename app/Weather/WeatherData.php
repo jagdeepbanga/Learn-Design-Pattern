@@ -2,33 +2,52 @@
 
 namespace App\Weather;
 
-use App\Weather\Contracts\WeatherDataInterface;
+use App\Weather\Contracts\ObserverInterface;
+use App\Weather\Contracts\SubjectInterface;
+use Illuminate\Support\Collection;
 
-class WeatherData implements WeatherDataInterface
+class WeatherData implements SubjectInterface
 {
-    public function getTemperature(): float
+    private Collection $observers;
+    private float $temperature;
+    private float $humidity;
+    private float $pressure;
+
+    public function __construct()
     {
-        return 32;
+        $this->observers = new Collection();
     }
 
-    public function getHumidity(): float
+    public function registerObserver(ObserverInterface $observer): bool
     {
-        return 43;
+        $this->observers->add($observer);
+
+        return true;
     }
 
-    public function getPressure(): float
+    public function removeObserver(ObserverInterface $observer): bool
     {
-        return 1017;
+        $this->observers->pull($observer);
+
+        return true;
+    }
+
+    public function notifyObserver(): void
+    {
+        $this->observers->each(function (ObserverInterface $observer) {
+            $observer->update($this->temperature, $this->humidity, $this->pressure);
+        });
     }
 
     public function measurementsChanged(): void
     {
-        $temp = $this->getTemperature();
-        $humidity = $this->getHumidity();
-        $pressure = $this->getPressure();
+        $this->notifyObserver();
+    }
 
-        (new CurrentConditionDisplay())->update($temp, $humidity, $pressure);
-        (new StaticDisplay())->update($temp, $humidity, $pressure);
-        (new ForecastDisplay())->update($temp, $humidity, $pressure);
+    public function setMeasurements(float $temperature, float $humidity, float $pressure)
+    {
+        $this->temperature = $temperature;
+        $this->humidity = $humidity;
+        $this->pressure = $pressure;
     }
 }
