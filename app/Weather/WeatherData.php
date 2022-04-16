@@ -8,7 +8,11 @@ use Illuminate\Support\Collection;
 
 class WeatherData implements SubjectInterface
 {
+    /**
+     * @var Collection<string, ObserverInterface>
+     */
     private Collection $observers;
+
     private float $temperature;
     private float $humidity;
     private float $pressure;
@@ -44,7 +48,7 @@ class WeatherData implements SubjectInterface
         $this->notifyObserver();
     }
 
-    public function setMeasurements(float $temperature, float $humidity, float $pressure)
+    public function setMeasurements(float $temperature, float $humidity, float $pressure): void
     {
         $this->temperature = $temperature;
         $this->humidity = $humidity;

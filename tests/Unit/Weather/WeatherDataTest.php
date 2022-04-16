@@ -12,7 +12,7 @@ use Tests\TestCase;
 class WeatherDataTest extends TestCase
 {
     /** @test */
-    public function can_show_current_conditions_display()
+    public function can_show_current_conditions_display(): void
     {
         $weatherData = new WeatherData();
         $currentCondition = new CurrentConditionsDisplay($weatherData);
@@ -28,7 +28,7 @@ class WeatherDataTest extends TestCase
     }
 
     /** @test */
-    public function can_show_forecast_display()
+    public function can_show_forecast_display(): void
     {
         $weatherData = new WeatherData();
         $forecastDisplay = new ForecastDisplay($weatherData);
@@ -44,7 +44,7 @@ class WeatherDataTest extends TestCase
     }
 
     /** @test */
-    public function can_show_statics_display()
+    public function can_show_statics_display(): void
     {
         $weatherData = new WeatherData();
         $statisticsDisplay = new StatisticsDisplay($weatherData);
@@ -60,7 +60,7 @@ class WeatherDataTest extends TestCase
     }
 
     /** @test */
-    public function can_show_heat_index_display()
+    public function can_show_heat_index_display(): void
     {
         $weatherData = new WeatherData();
         $heatIndexDisplay = new HeatIndexDisplay($weatherData);
@@ -75,7 +75,7 @@ class WeatherDataTest extends TestCase
     }
 
     /** @test */
-    public function can_remove_observer_from_subject_notification()
+    public function can_remove_observer_from_subject_notification(): void
     {
         $weatherData = new WeatherData();
         $currentConditionsDisplay = new CurrentConditionsDisplay($weatherData);
@@ -91,6 +91,4 @@ class WeatherDataTest extends TestCase
             'Current conditions: 80F degrees and 65 humidity. '
         );
     }
-
-
 }
