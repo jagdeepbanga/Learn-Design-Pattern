@@ -20,14 +20,14 @@ class WeatherData implements SubjectInterface
 
     public function registerObserver(ObserverInterface $observer): bool
     {
-        $this->observers->add($observer);
+        $this->observers->put(get_class($observer), $observer);
 
         return true;
     }
 
     public function removeObserver(ObserverInterface $observer): bool
     {
-        $this->observers->pull($observer);
+        $this->observers->pull(get_class($observer));
 
         return true;
     }

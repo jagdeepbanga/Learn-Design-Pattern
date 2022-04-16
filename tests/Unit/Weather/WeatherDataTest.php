@@ -74,5 +74,23 @@ class WeatherDataTest extends TestCase
         );
     }
 
+    /** @test */
+    public function can_remove_observer_from_subject_notification()
+    {
+        $weatherData = new WeatherData();
+        $currentConditionsDisplay = new CurrentConditionsDisplay($weatherData);
+
+        $weatherData->setMeasurements(80, 65, 30);
+
+        $weatherData->removeObserver($currentConditionsDisplay);
+
+        $weatherData->setMeasurements(82, 70, 29.5);
+        $weatherData->setMeasurements(78, 90, 28);
+
+        $this->expectOutputString(
+            'Current conditions: 80F degrees and 65 humidity. '
+        );
+    }
+
 
 }
