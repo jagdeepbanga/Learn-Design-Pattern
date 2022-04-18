@@ -56,7 +56,7 @@ class BeverageTest extends TestCase
     }
 
     /** @test */
-    public function can_order_large_house_blend_steamed_milk_mocha()
+    public function can_order_large_house_blend_steamed_milk_mocha(): void
     {
         $houseBlend = (new HouseBlend())->setSize(Size::LARGE);
         $soy = new SteamedMilk($houseBlend);
