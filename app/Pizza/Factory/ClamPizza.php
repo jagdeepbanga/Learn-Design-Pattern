@@ -2,7 +2,7 @@
 
 namespace App\Pizza\Factory;
 
-class ClamPizza
+class ClamPizza extends BasePizza
 {
 
 }

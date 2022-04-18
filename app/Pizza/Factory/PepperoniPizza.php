@@ -2,6 +2,6 @@
 
 namespace App\Pizza\Factory;
 
-class PepperoniPizza
+class PepperoniPizza extends BasePizza
 {
 }
