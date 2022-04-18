@@ -2,20 +2,17 @@
 
 namespace App\StarBuzz;
 
-use App\StarBuzz\Coffees\Beverage;
+use App\StarBuzz\Enums\Size;
 
 class Mocha extends CondimentDecorator
 {
-    private Beverage $beverage;
-
-    public function __construct(Beverage $beverage)
-    {
-        $this->beverage = $beverage;
-    }
-
     public function cost(): float
     {
-        return $this->beverage->cost() + 0.20;
+        return match ($this->getSize()) {
+            Size::SMALL => $this->beverage->cost() + 0.15,
+            Size::MEDIUM => $this->beverage->cost() + 0.20,
+            Size::LARGE => $this->beverage->cost() + 0.25,
+        };
     }
 
     public function getDescription(): string

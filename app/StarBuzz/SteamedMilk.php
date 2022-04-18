@@ -2,20 +2,17 @@
 
 namespace App\StarBuzz;
 
-use App\StarBuzz\Coffees\Beverage;
+use App\StarBuzz\Enums\Size;
 
 class SteamedMilk extends CondimentDecorator
 {
-    private Beverage $beverage;
-
-    public function __construct(Beverage $beverage)
-    {
-        $this->beverage = $beverage;
-    }
-
     public function cost(): float
     {
-        return $this->beverage->cost() + 0.10;
+        return match ($this->getSize()) {
+            Size::SMALL => $this->beverage->cost() + 0.05,
+            Size::MEDIUM => $this->beverage->cost() + 0.10,
+            Size::LARGE => $this->beverage->cost() + 0.15,
+        };
     }
 
     public function getDescription(): string
