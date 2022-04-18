@@ -20,6 +20,6 @@ class Whip extends CondimentDecorator
 
     public function getDescription(): string
     {
-        return sprintf('%s, Whip', $this->beverage->getBeverageDescription());
+        return sprintf('%s, Whip', $this->beverage->getDescription());
     }
 }

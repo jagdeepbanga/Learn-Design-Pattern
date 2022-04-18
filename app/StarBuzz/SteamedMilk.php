@@ -20,6 +20,6 @@ class SteamedMilk extends CondimentDecorator
 
     public function getDescription(): string
     {
-        return sprintf('%s, Steam Milk', $this->beverage->getBeverageDescription());
+        return sprintf('%s, Steam Milk', $this->beverage->getDescription());
     }
 }

@@ -20,6 +20,6 @@ class Mocha extends CondimentDecorator
 
     public function getDescription(): string
     {
-        return sprintf('%s, Mocha', $this->beverage->getBeverageDescription());
+        return sprintf('%s, Mocha', $this->beverage->getDescription());
     }
 }

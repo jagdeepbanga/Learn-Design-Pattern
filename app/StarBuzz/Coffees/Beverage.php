@@ -6,7 +6,7 @@ abstract class Beverage
 {
     public string $description = 'Unknown Beverage';
 
-    public function getBeverageDescription(): string
+    public function getDescription(): string
     {
         return $this->description;
     }

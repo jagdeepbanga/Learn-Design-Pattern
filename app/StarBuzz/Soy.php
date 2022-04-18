@@ -20,6 +20,6 @@ class Soy extends CondimentDecorator
 
     public function getDescription(): string
     {
-        return sprintf('%s, Soy', $this->beverage->getBeverageDescription());
+        return sprintf('%s, Soy', $this->beverage->getDescription());
     }
 }
