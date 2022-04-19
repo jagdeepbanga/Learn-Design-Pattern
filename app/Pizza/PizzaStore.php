@@ -14,6 +14,10 @@ class PizzaStore
         $this->factory = $factory;
     }
 
+    /**
+     * @param  PizzaType  $type
+     * @return Factory\CheesePizza|Factory\ClamPizza|Factory\PepperoniPizza|Factory\VeggiePizza
+     */
     public function order(PizzaType $type)
     {
         $pizza = $this->factory->createPizza($type);
