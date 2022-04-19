@@ -10,6 +10,10 @@ use App\PizzaFranchise\Factory\VeggiePizza;
 
 class CaliforniaStylePizzaStore extends PizzaStore
 {
+    /**
+     * @param  PizzaType  $type
+     * @return CaliforniaCheesePizza|ClamPizza|PepperoniPizza|VeggiePizza
+     */
     public function createPizza(PizzaType $type)
     {
         return match ($type) {
